@@ -1,24 +1,63 @@
-import qrcode
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório e Texto Embutido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .content {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .copy-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
 
-# Texto que você quer incluir no QR Code
-texto = "Acesse o relatório aqui: https://pagina-relatorio.vercel.app"
+    <div class="content">
+        <h1>Acesse o Relatório e Copie os Dados</h1>
+        <p>Para acessar o relatório, clique no link abaixo:</p>
+        <a href="https://pagina-relatorio.vercel.app" target="_blank">Clique aqui para acessar o relatório</a>
 
-# Gerando o QR Code
-qr = qrcode.QRCode(
-    version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_L,
-    box_size=10,
-    border=4,
-)
+        <h3>Texto Embutido no QR Code:</h3>
+        <textarea id="textoEmb" rows="4" cols="50" readonly>
+Acesse o relatório aqui: https://pagina-relatorio.vercel.app
+Texto adicional embutido no QR Code.
+        </textarea>
+        
+        <button class="copy-btn" onclick="copiarTexto()">Copiar Texto</button>
+    </div>
 
-# Adicionando o texto ao QR Code
-qr.add_data(texto)
-qr.make(fit=True)
+    <script>
+        function copiarTexto() {
+            var texto = document.getElementById("textoEmb");
+            texto.select();
+            texto.setSelectionRange(0, 99999); /* Para dispositivos móveis */
+            document.execCommand("copy");
+            alert("Texto copiado com sucesso!");
+        }
+    </script>
 
-# Criando a imagem do QR Code
-img = qr.make_image(fill='black', back_color='white')
-
-# Salvando o QR Code em um arquivo
-img.save("qr_code_com_texto.png")
-
-print("QR Code gerado com sucesso!")
+</body>
+</html>
