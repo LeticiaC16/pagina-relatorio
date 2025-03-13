@@ -1,11 +1,7 @@
 import qrcode
 
-# Definindo o link e o texto
-link = "https://pagina-relatorio.vercel.app"
-texto_adicional = "Acesse o relatório aqui!"
-
-# Combinando o texto e o link
-conteudo = f"{texto_adicional}\n{link}"
+# Texto que você quer incluir no QR Code
+texto = "Acesse o relatório aqui: https://pagina-relatorio.vercel.app"
 
 # Gerando o QR Code
 qr = qrcode.QRCode(
@@ -15,15 +11,14 @@ qr = qrcode.QRCode(
     border=4,
 )
 
-# Adicionando o conteúdo ao QR Code
-qr.add_data(conteudo)
+# Adicionando o texto ao QR Code
+qr.add_data(texto)
 qr.make(fit=True)
 
 # Criando a imagem do QR Code
 img = qr.make_image(fill='black', back_color='white')
 
 # Salvando o QR Code em um arquivo
-img.save("qr_code_com_texto_e_link.png")
+img.save("qr_code_com_texto.png")
 
 print("QR Code gerado com sucesso!")
-
